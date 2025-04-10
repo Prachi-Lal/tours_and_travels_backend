@@ -1,0 +1,7 @@
+fastapi
+dotenv
+uvicorn
+pymongo[srv]
+pydantic
+typing
+bson
