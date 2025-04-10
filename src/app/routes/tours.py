@@ -1,9 +1,9 @@
 from fastapi import APIRouter
-from app.endpoints.tours import fetch_collections, search_tours
-from models.tours import tours
+from src.app.endpoints.tours import fetch_collections, search_tours
+from src.models.tours import tours
 from fastapi import Depends
 from fastapi import Body
-from app.database.mongo import get_database
+from src.app.database.mongo import get_database
 from pymongo.database import Database
 
 router = APIRouter()

@@ -1,9 +1,10 @@
 from fastapi import Depends
-from pymongo.database import Database
-from app.database.mongo import get_database
-from models.tours import tours
+from src.app.database.mongo import get_database
+from src.models.tours import tours
+from pymongo import *
 
-def fetch_collections(db: Database = Depends(get_database)):
+
+def fetch_collections(db = get_database()):
     result = []
     db_collection = db.get_collection("users")
     documents = db_collection.find()
@@ -13,7 +14,7 @@ def fetch_collections(db: Database = Depends(get_database)):
         result.append(document)
     return result
 
-def search_tours(filters: tours, db: Database = Depends(get_database)):
+def search_tours(filters: tours, db = get_database()):
     query = {}
     if filters.countries:
         query["countries"] = {"$in" : filters.countries}
@@ -23,7 +24,7 @@ def search_tours(filters: tours, db: Database = Depends(get_database)):
         query["no_of_days"] = filters.no_of_days
     if filters.keywords:
         query["keywords"] = {"$in": filters.keywords}
-    collection = db.get_collection("tours")
+    collection = db.get_collection("users") 
     results = collection.find(query)
     tours = []
     for document in results:
