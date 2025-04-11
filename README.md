@@ -61,11 +61,11 @@ Welcome to the **Tours & Travels Backend** — a robust, elegant, and thoughtful
 ```bash
 # 1. Clone the repo
 git clone https://github.com/Prachi-Lal/tours_and_travels_backend.git
-cd tours-backend
+cd tours_and_travels_backend
 
 # 2. Spin it up
-cp .env.example .env
-docker-compose up --build
+pip install -r requirements.txt
+uvicorn app.main:app --reload
 
 # 3. You're live on
 http://localhost:8000/docs 🚀
